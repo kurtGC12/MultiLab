@@ -1,1 +1,89 @@
-<p>home works!</p>
+<div class="container mt-4">
+
+  <h1 class="mb-3">🏥 Gestión de Laboratorios - MultiLab</h1>
+
+  <p class="mb-4">
+    Bienvenido/a al sistema de administración de 
+    <strong>Laboratorios Clínicos</strong>.
+    Aquí puedes gestionar información de distintos laboratorios,
+    según tu rol en la plataforma:
+    <strong>ADMIN</strong> o <strong>ANALISTA</strong>.
+  </p>
+
+  <div class="row g-3">
+
+    <!-- ============================================================
+         COLUMNA IZQUIERDA → Estado de sesión
+         ============================================================ -->
+    <div class="col-md-6">
+      <div class="card p-3 shadow-sm">
+
+        <h5 class="card-title">Estado de sesión</h5>
+
+        <!-- Si hay usuario autenticado -->
+        <ng-container *ngIf="estaAutenticado; else sinSesion">
+
+          <p class="mb-1">
+            ✅ Sesión iniciada como:
+            <strong>{{ nombreUsuario }}</strong>
+          </p>
+
+          <p class="mb-3">
+            Rol actual:
+            <span class="badge bg-primary">{{ rolUsuario }}</span>
+          </p>
+
+          <button
+            class="btn btn-outline-primary btn-sm"
+            (click)="irALaboratorios()">
+            Ir a gestión de laboratorios
+          </button>
+
+        </ng-container>
+
+        <!-- ========================================================
+             Si NO hay sesión → botones Login / Registro
+             ======================================================== -->
+        <ng-template #sinSesion>
+
+          <p class="mb-3">
+            Actualmente no hay ningún usuario autenticado.
+          </p>
+
+          <button
+            class="btn btn-primary btn-sm me-2"
+            (click)="irALogin()">
+            Iniciar sesión
+          </button>
+
+          <button
+            class="btn btn-outline-secondary btn-sm"
+            (click)="irARegistro()">
+            Registrarme
+          </button>
+
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         COLUMNA DERECHA → Información del módulo
+         ============================================================ -->
+    <div class="col-md-6">
+      <div class="card p-3 shadow-sm">
+
+        <h5 class="card-title">Sobre este sistema</h5>
+
+        <ul class="mb-0">
+          <li>ADMIN: puede crear, editar y eliminar laboratorios.</li>
+          <li>ANALISTA: solo puede ver la información.</li>
+          <li>Autenticación simple usando LocalStorage.</li>
+          <li>BackEnd: Microservicio Spring Boot.</li>
+          <li>FrontEnd: Angular 17 con Standalone Components.</li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+</div>

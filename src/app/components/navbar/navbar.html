@@ -1,1 +1,116 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <!-- Marca / título -->
+    <a class="navbar-brand" routerLink="/home">
+      🧪 MultiLab - Gestión de Laboratorios
+    </a>
+
+    <!-- Botón colapsable -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarPrincipal"
+      aria-controls="navbarPrincipal"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarPrincipal">
+
+      <!-- Menú izquierdo -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- Inicio -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/home"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Inicio
+          </a>
+        </li>
+
+        <!-- Laboratorios (si está autenticado) -->
+        <li class="nav-item" *ngIf="estaAutenticado">
+          <a
+            class="nav-link"
+            routerLink="/laboratorios"
+            routerLinkActive="active"
+          >
+            Laboratorios
+          </a>
+        </li>
+
+        <!-- Usuarios → SOLO ADMIN -->
+        <li class="nav-item" *ngIf="esAdmin">
+          <a
+            class="nav-link"
+            routerLink="/usuarios"
+            routerLinkActive="active"
+          >
+            Usuarios
+          </a>
+        </li>
+
+        <!-- Perfil → SOLO ANALISTA -->
+        <li class="nav-item" *ngIf="esAnalista">
+          <a
+            class="nav-link"
+            routerLink="/perfil"
+            routerLinkActive="active"
+          >
+            Mi Perfil
+          </a>
+        </li>
+
+        <!-- Opciones para NO autenticado -->
+        <ng-container *ngIf="!estaAutenticado">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">
+              Iniciar sesión
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/registro" routerLinkActive="active">
+              Registrarme
+            </a>
+          </li>
+        </ng-container>
+
+      </ul>
+
+      <!-- Lado derecho: usuario autenticado -->
+      <div class="d-flex align-items-center">
+
+        <ng-container *ngIf="estaAutenticado; else noSesion">
+          <span class="navbar-text me-3">
+            👤 {{ nombreUsuario }}
+            <span class="badge bg-info text-dark ms-1">
+              {{ rolUsuario }}
+            </span>
+          </span>
+
+          <button
+            class="btn btn-outline-light btn-sm"
+            (click)="cerrarSesion()">
+            Cerrar sesión
+          </button>
+        </ng-container>
+
+        <ng-template #noSesion>
+          <span class="navbar-text">No hay usuario autenticado</span>
+        </ng-template>
+
+      </div>
+
+    </div>
+  </div>
+</nav>
+

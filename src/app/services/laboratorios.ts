@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';            // Cliente HTTP nativo de Angular
 import { Observable } from 'rxjs';                            // Mecanismo reactivo para respuestas asíncronas
 import { environment } from '../../environments/environment'; // Donde está la URL base del backend
-import { Laboratorio } from '../models/laboratorio';     // ✅ importar modelo desde /models
+import { Laboratorio } from '../models/laboratorio';      // Modelo de datos de Laboratorio
 
 
 @Injectable({

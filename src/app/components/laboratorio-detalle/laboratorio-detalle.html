@@ -1,1 +1,30 @@
-<p>laboratorio-detalle works!</p>
+<h2>🏥 Detalle del Laboratorio</h2>
+
+<p *ngIf="loading">Cargando...</p>
+<p *ngIf="error" class="text-danger">{{ error }}</p>
+
+<div
+  *ngIf="!loading && !error && laboratorio"
+  class="card shadow p-3"
+  style="max-width:450px;"
+>
+  <p><strong>ID:</strong> {{ laboratorio.id }}</p>
+  <p><strong>Nombre:</strong> {{ laboratorio.nombre }}</p>
+  <p><strong>Dirección:</strong> {{ laboratorio.direccion }}</p>
+  <p><strong>Teléfono:</strong> {{ laboratorio.telefono }}</p>
+
+  <hr />
+
+  <p>
+    <a
+      [routerLink]="['/laboratorios/editar', laboratorio.id]"
+      class="btn btn-sm btn-outline-primary me-2"
+    >
+      ✏️ Editar
+    </a>
+
+    <a routerLink="/laboratorios" class="btn btn-sm btn-outline-secondary">
+      🔙 Volver
+    </a>
+  </p>
+</div>

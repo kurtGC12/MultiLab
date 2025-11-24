@@ -1,7 +1,8 @@
 
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuario } from '../models/usuario';
+import { isPlatformBrowser } from '@angular/common';
 
 // Clave usada en LocalStorage
 const STORAGE_KEY_USUARIO = 'usuarioActual';
@@ -13,15 +14,23 @@ export class AuthService {
 
   private usuarioActualSubject: BehaviorSubject<Usuario | null>;
   public usuarioActual$: Observable<Usuario | null>;
+  private isBrowser: boolean = false;
 
-  constructor() {
-    // Cargamos usuario desde localStorage al arrancar el sistema
-    const usuarioGuardado = localStorage.getItem(STORAGE_KEY_USUARIO);
 
-    const usuarioInicial: Usuario | null = usuarioGuardado
-      ? JSON.parse(usuarioGuardado)
-      : null;
-// Inicializamos el BehaviorSubject con el usuario cargado
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+
+    // Detectar si estamos en el navegador (SSR-safe)
+    this.isBrowser = isPlatformBrowser(this.platformId);
+
+    let usuarioInicial: Usuario | null = null;
+
+    // Solo acceder a localStorage si estamos en el navegador
+    if (this.isBrowser) {
+      const usuarioGuardado = localStorage.getItem(STORAGE_KEY_USUARIO);
+      usuarioInicial = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
+    }
+
+    // Inicializar BehaviorSubject
     this.usuarioActualSubject = new BehaviorSubject<Usuario | null>(usuarioInicial);
     this.usuarioActual$ = this.usuarioActualSubject.asObservable();
   }
