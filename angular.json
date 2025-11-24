@@ -28,7 +28,6 @@
             ],
            "styles": [
               "src/styles.css",
-              "src/assets/css/main.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/vendor/aos/aos.css",
               "src/assets/vendor/bootstrap/css/bootstrap.min.css",
