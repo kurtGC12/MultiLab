@@ -1,89 +1,122 @@
-<div class="container mt-4">
+<header class="header d-flex align-items-center fixed-top">
+  <div class="container d-flex justify-content-between align-items-center">
 
-  <h1 class="mb-3">🏥 Gestión de Laboratorios - MultiLab</h1>
+    <!-- LOGO IZQUIERDA -->
+    <h1 class="logo mb-0">MultiLab</h1>
 
-  <p class="mb-4">
-    Bienvenido/a al sistema de administración de 
-    <strong>Laboratorios Clínicos</strong>.
-    Aquí puedes gestionar información de distintos laboratorios,
-    según tu rol en la plataforma:
-    <strong>ADMIN</strong> o <strong>ANALISTA</strong>.
-  </p>
+    <!-- MENÚ CENTRADO -->
+     <nav class="navmenu header-center">
+      <ul>
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/login">Iniciar sesión</a></li>
+        <li><a routerLink="/registro">Registrarme</a></li>
+      </ul>
+    </nav>
 
-  <div class="row g-3">
+    <!-- SESIÓN DERECHA -->
+    <div class="session-status ms-auto">
+      <ng-container *ngIf="estaAutenticado; else sinSesion">
+              <p>👤 Usuario: <strong>{{ nombreUsuario }}</strong></p>
+              <p>🔑 Rol: <span class="badge bg-primary">{{ rolUsuario }}</span></p>
 
-    <!-- ============================================================
-         COLUMNA IZQUIERDA → Estado de sesión
-         ============================================================ -->
-    <div class="col-md-6">
-      <div class="card p-3 shadow-sm">
+              <button class="btn btn-outline-primary btn-sm" (click)="irALaboratorios()">
+                Ir a Gestión de Laboratorios
+              </button>
+            </ng-container>
 
-        <h5 class="card-title">Estado de sesión</h5>
-
-        <!-- Si hay usuario autenticado -->
-        <ng-container *ngIf="estaAutenticado; else sinSesion">
-
-          <p class="mb-1">
-            ✅ Sesión iniciada como:
-            <strong>{{ nombreUsuario }}</strong>
-          </p>
-
-          <p class="mb-3">
-            Rol actual:
-            <span class="badge bg-primary">{{ rolUsuario }}</span>
-          </p>
-
-          <button
-            class="btn btn-outline-primary btn-sm"
-            (click)="irALaboratorios()">
-            Ir a gestión de laboratorios
-          </button>
-
-        </ng-container>
-
-        <!-- ========================================================
-             Si NO hay sesión → botones Login / Registro
-             ======================================================== -->
-        <ng-template #sinSesion>
-
-          <p class="mb-3">
-            Actualmente no hay ningún usuario autenticado.
-          </p>
-
-          <button
-            class="btn btn-primary btn-sm me-2"
-            (click)="irALogin()">
-            Iniciar sesión
-          </button>
-
-          <button
-            class="btn btn-outline-secondary btn-sm"
-            (click)="irARegistro()">
-            Registrarme
-          </button>
-
-        </ng-template>
-      </div>
+            <ng-template #sinSesion>
+              <p>No hay sesion iniciada</p>
+            </ng-template>
     </div>
-
-    <!-- ============================================================
-         COLUMNA DERECHA → Información del módulo
-         ============================================================ -->
-    <div class="col-md-6">
-      <div class="card p-3 shadow-sm">
-
-        <h5 class="card-title">Sobre este sistema</h5>
-
-        <ul class="mb-0">
-          <li>ADMIN: puede crear, editar y eliminar laboratorios.</li>
-          <li>ANALISTA: solo puede ver la información.</li>
-          <li>Autenticación simple usando LocalStorage.</li>
-          <li>BackEnd: Microservicio Spring Boot.</li>
-          <li>FrontEnd: Angular 17 con Standalone Components.</li>
-        </ul>
-
-      </div>
-    </div>
-
   </div>
-</div>
+</header>
+<main>
+  <section id="hero" class="hero section dark-background">
+
+    <!-- Imagen de fondo -->
+    <img src="/imagen/lab.jpg" alt="Laboratorio clínico">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <h2>Gestión Inteligente de Laboratorios</h2>
+      <p>Control total de resultados, usuarios, muestras y reportes en un solo sistema.</p>
+
+      <a routerLink="/registro" class="btn-get-started">
+        Comienza Ahora
+      </a>
+    </div>
+  </section>
+   
+ <section id="why-us" class="why-us section">
+    <div class="container section-title" data-aos="fade-up">
+      <div><span>¿Por qué elegir </span><span class="description-title">MultiLab?</span></div>
+    </div>
+
+    <div class="container">
+      <div class="row gy-4">
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-item">
+            <span>01</span>
+            <h4><a class="stretched-link">Trazabilidad Completa</a></h4>
+            <p>Desde la toma de muestra hasta el resultado final. Control absoluto en cada etapa del proceso.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-item">
+            <span>02</span>
+            <h4><a class="stretched-link">Acceso Seguro</a></h4>
+            <p>Roles para Administradores y Analistas, con permisos personalizados y protección de datos sensibles.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-item">
+            <span>03</span>
+            <h4><a class="stretched-link">Reportes en Tiempo Real</a></h4>
+            <p>Visualiza estadísticas, resultados, productividad y estado de las muestras con gráficos dinámicos.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<section id="gallery" class="section">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Instalaciones</h2>
+      <div><span>Nuestras áreas de </span><span class="description-title">Laboratorio</span></div>
+    </div>
+
+    <div class="container">
+      <div class="row g-4">
+
+        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+          <img src="/imagen/lab1.jpg" class="gallery-img" alt="">
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="150">
+          <img src="/imagen/lab2.jpg" class="gallery-img" alt="">
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+          <img src="/imagen/lab3.jpg" class="gallery-img" alt="">
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="250">
+          <img src="/imagen/lab4.jpg" class="gallery-img" alt="">
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+          <img src="/imagen/lab5.jpg" class="gallery-img" alt="">
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="350">
+          <img src="/imagen/lab6.jpg" class="gallery-img" alt="">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>

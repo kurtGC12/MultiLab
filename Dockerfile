@@ -1,22 +1,17 @@
 # ===================================================================
 # FASE 1 – BUILD Angular
 # ===================================================================
-FROM node:18-alpine AS build
+FROM node:22.12.0 AS builder
 
 WORKDIR /app
 
-# Copiamos package.json primero (optimiza cache)
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
-# Instalamos dependencias
 RUN npm install
 
-# Copiamos todo el código fuente
 COPY . .
 
-# Construimos en modo producción
-RUN npx ng build --configuration production
-
+RUN npm run build --prod
 
 # ===================================================================
 # FASE 2 – RUN: nginx para servir Angular compilado
@@ -24,7 +19,7 @@ RUN npx ng build --configuration production
 FROM nginx:alpine
 
 # Copiamos el build generado hacia la carpeta pública de NGINX
-COPY --from=build /app/dist/biblioteca-angular/browser /usr/share/nginx/html
+COPY --from=build /app/dist/MultiLabs/browser /usr/share/nginx/html
 
 # Copiamos configuración de NGINX
 COPY nginx.conf /etc/nginx/conf.d/default.conf
