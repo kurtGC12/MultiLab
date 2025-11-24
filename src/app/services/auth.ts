@@ -9,7 +9,7 @@ const STORAGE_KEY_USUARIO = 'usuarioActual';
 @Injectable({
   providedIn: 'root'
 })
-export class Auth {
+export class AuthService {
 
   private usuarioActualSubject: BehaviorSubject<Usuario | null>;
   public usuarioActual$: Observable<Usuario | null>;
