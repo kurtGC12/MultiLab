@@ -12,7 +12,7 @@ import { Laboratorio } from '../../models/laboratorio';
   templateUrl: './laboratorio-detalle.html',
   styleUrls: ['./laboratorio-detalle.css']
 })
-export class LaboratorioDetalleComponent implements OnInit {
+export class LaboratorioDetalle implements OnInit {
 
   laboratorio!: Laboratorio;
   loading = false;

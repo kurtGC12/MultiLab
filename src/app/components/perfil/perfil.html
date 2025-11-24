@@ -1,0 +1,47 @@
+<div class="container mt-4" *ngIf="!error; else errorTemplate">
+  <h2 class="mb-3">👤 Mi Perfil</h2>
+
+  <div class="card p-3">
+    <form (ngSubmit)="guardarCambios()">
+
+      <!-- Email (solo lectura) -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" [(ngModel)]="usuario.email" name="email"
+               class="form-control" disabled>
+      </div>
+
+      <!-- Rol  -->
+      <div class="mb-3">
+        <label class="form-label">Rol</label>
+        <input type="text" [(ngModel)]="usuario.rol" name="rol"
+               class="form-control" disabled>
+      </div>
+
+      <!-- Editable: Nombre -->
+      <div class="mb-3">
+        <label class="form-label">Nombre completo</label>
+        <input type="text" [(ngModel)]="usuario.nombre" name="nombre"
+               class="form-control" required>
+      </div>
+
+    
+      <!-- Editable: Password -->
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" [(ngModel)]="usuario.password" name="password"
+               class="form-control" required>
+      </div>
+
+      <button class="btn btn-primary">Guardar cambios</button>
+
+      <p class="text-success mt-3" *ngIf="mensaje">{{ mensaje }}</p>
+    </form>
+  </div>
+</div>
+
+<ng-template #errorTemplate>
+  <div class="alert alert-danger mt-4 container">
+    {{ error }}
+  </div>
+</ng-template>

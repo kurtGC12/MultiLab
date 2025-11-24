@@ -29,18 +29,17 @@ export class Home {
   get rolUsuario(): string {
     return this.authService.usuarioActual?.rol ?? '';
   }
-
-
-  irALaboratorios() {
-    this.router.navigate(['/laboratorios']);
-  }
-
-  irALogin() {
+  // Navegación
+ irALogin(): void {
     this.router.navigate(['/login']);
   }
 
-  irARegistro() {
+  irARegistro(): void {
     this.router.navigate(['/registro']);
+  }
+
+  irALaboratorios(): void {
+    this.router.navigate(['/laboratorios']);
   }
 
 }

@@ -1,1 +1,35 @@
-<p>registro works!</p>
+
+<div class="container mt-4" style="max-width: 560px;">
+  <h2 class="mb-3">📝 Registro de usuario</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Nombre completo</label>
+      <input class="form-control" formControlName="nombre" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" formControlName="email" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input type="password" class="form-control" formControlName="password" />
+    </div>
+    
+    <div *ngIf="mensajeError" class="alert alert-danger py-2">
+      {{ mensajeError }}
+    </div>
+
+    <div *ngIf="mensajeOk" class="alert alert-success py-2">
+      {{ mensajeOk }}
+      <a routerLink="/login" class="ms-2">Ir a iniciar sesión</a>
+    </div>
+
+    <button class="btn btn-success" type="submit" [disabled]="cargando">
+      {{ cargando ? 'Registrando...' : 'Registrarme' }}
+    </button>
+  </form>
+</div>
+
