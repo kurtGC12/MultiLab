@@ -1,68 +1,75 @@
-<div class="container mt-4">
+<div class="container">
 
-  <h2 class="mb-3 text-center">🏥 Gestión de Laboratorios</h2>
+  <h1 class="lablist-title">🏥 Gestión de Laboratorios</h1>
 
-  <div *ngIf="loading" class="alert alert-info text-center">
+  <!-- Cargando -->
+  <div *ngIf="loading" class="alert-info-custom">
     Cargando laboratorios...
   </div>
 
-  <div *ngIf="error" class="alert alert-danger text-center">
+  <!-- Error -->
+  <div *ngIf="error" class="alert-error">
     {{ error }}
   </div>
 
-  <div class="d-flex justify-content-end mb-3">
+  <!-- Botón Nuevo Laboratorio -->
+  <div class="lablist-actions">
     <a 
       *ngIf="auth.esAdmin()"
-      routerLink="/laboratorios/nuevo" 
-      class="btn btn-success">
+      routerLink="/laboratorios/nuevo"
+      class="btn btn-primary">
       ➕ Nuevo Laboratorio
     </a>
   </div>
- <!-- Tabla de laboratorios -->
-  <table *ngIf="!loading && !error && laboratorios.length > 0" 
-         class="table table-striped table-bordered table-hover shadow-sm">
-    
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-        <th class="text-center">Acciones</th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <tr *ngFor="let lab of laboratorios">
-        <td>{{ lab.id }}</td>
-        <td>{{ lab.nombre }}</td>
-        <td>{{ lab.direccion }}</td>
-        <td>{{ lab.telefono }}</td>
+  <!-- Tabla -->
+  <div class="lablist-card" *ngIf="!loading && !error && laboratorios.length > 0">
 
-        <td class="text-center">
-        <!-- Botones de Editar y Eliminar solo para ADMIN -->
-          <a 
-            *ngIf="auth.esAdmin()"
-            [routerLink]="['/laboratorios/editar', lab.id]" 
-            class="btn btn-sm btn-outline-warning me-1">
-            ✏️ Editar
-          </a>
-        
-        
-          <button 
-            *ngIf="auth.esAdmin()"
-            (click)="eliminar(lab.id)" 
-            class="btn btn-sm btn-outline-danger">
-            🗑️ Eliminar
-          </button>
+    <table class="lab-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
 
-        </td>
-      </tr>
-    </tbody>
-  </table>
-     <!-- Mensaje cuando no hay laboratorios -->
-  <div *ngIf="!loading && !error && laboratorios.length === 0" 
-       class="alert alert-secondary text-center">
+      <tbody>
+        <tr *ngFor="let lab of laboratorios">
+          <td>{{ lab.id }}</td>
+          <td>{{ lab.nombre }}</td>
+          <td>{{ lab.direccion }}</td>
+          <td>{{ lab.telefono }}</td>
+
+          <td class="text-center">
+
+            <a
+              *ngIf="auth.esAdmin()"
+              [routerLink]="['/laboratorios/editar', lab.id]"
+              class="table-btn table-btn-edit">
+              ✏️ Editar
+            </a>
+
+            <button
+              *ngIf="auth.esAdmin()"
+              (click)="eliminar(lab.id)"
+              class="table-btn table-btn-delete">
+              🗑️ Eliminar
+            </button>
+
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+  <!-- No resultados -->
+  <div 
+    *ngIf="!loading && !error && laboratorios.length === 0"
+    class="alert-secondary-custom">
     No hay laboratorios registrados en la base de datos.
   </div>
 

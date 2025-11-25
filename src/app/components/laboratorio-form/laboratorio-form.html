@@ -1,85 +1,91 @@
-<div class="container mt-4">
+<div class="container labform-wrapper">
 
-  <h2 class="mb-4 text-center">
+  <h1 class="labform-title text-center">
     {{ editMode ? '✏️ Editar Laboratorio' : '➕ Nuevo Laboratorio' }}
-  </h2>
+  </h1>
 
   <!-- Cargando -->
-  <div *ngIf="loading" class="alert alert-info">
+  <div *ngIf="loading" class="alert-info-custom">
     Cargando laboratorio...
   </div>
 
- <!-- Error -->
-  <div *ngIf="error" class="alert alert-danger">
+  <!-- Error -->
+  <div *ngIf="error" class="alert-error">
     {{ error }}
   </div>
 
-  <!-- Formulario -->
-  <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="card shadow p-4">
+  <!-- FORMULARIO -->
+  <form 
+    *ngIf="!loading"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    novalidate
+    class="labform-card"
+  >
 
-    <!-- ========================= NOMBRE ========================= -->
-    <div class="mb-3">
-      <label for="nombre" class="form-label fw-bold">Nombre del Laboratorio</label>
+    <!-- Nombre -->
+    <div class="form-group">
+      <label for="nombre" class="form-label">Nombre del Laboratorio</label>
 
       <input
         id="nombre"
         type="text"
         formControlName="nombre"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': hasError('nombre') }"
+        class="form-input"
+        [class.input-error]="hasError('nombre')"
       />
 
-      <div *ngIf="hasError('nombre')" class="invalid-feedback">
-        <ng-container *ngIf="hasError('nombre', 'required')">El nombre es obligatorio.</ng-container>
-        <ng-container *ngIf="hasError('nombre', 'minlength')">Debe tener al menos 3 caracteres.</ng-container>
-        <ng-container *ngIf="hasError('nombre', 'maxlength')">No puede superar los 100 caracteres.</ng-container>
+      <div *ngIf="hasError('nombre')" class="form-error">
+        <ng-container *ngIf="hasError('nombre','required')">El nombre es obligatorio.</ng-container>
+        <ng-container *ngIf="hasError('nombre','minlength')">Debe tener al menos 3 caracteres.</ng-container>
+        <ng-container *ngIf="hasError('nombre','maxlength')">No puede superar los 100 caracteres.</ng-container>
       </div>
     </div>
 
-    <!-- ========================= DIRECCIÓN ========================= -->
-    <div class="mb-3">
-      <label for="direccion" class="form-label fw-bold">Dirección</label>
+    <!-- Dirección -->
+    <div class="form-group">
+      <label for="direccion" class="form-label">Dirección</label>
 
       <input
         id="direccion"
         type="text"
         formControlName="direccion"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': hasError('direccion') }"
+        class="form-input"
+        [class.input-error]="hasError('direccion')"
       />
 
-      <div *ngIf="hasError('direccion')" class="invalid-feedback">
-        <ng-container *ngIf="hasError('direccion', 'required')">La dirección es obligatoria.</ng-container>
-        <ng-container *ngIf="hasError('direccion', 'minlength')">Debe tener al menos 5 caracteres.</ng-container>
-        <ng-container *ngIf="hasError('direccion', 'maxlength')">No puede superar los 200 caracteres.</ng-container>
+      <div *ngIf="hasError('direccion')" class="form-error">
+        <ng-container *ngIf="hasError('direccion','required')">La dirección es obligatoria.</ng-container>
+        <ng-container *ngIf="hasError('direccion','minlength')">Debe tener al menos 5 caracteres.</ng-container>
+        <ng-container *ngIf="hasError('direccion','maxlength')">No puede superar los 200 caracteres.</ng-container>
       </div>
     </div>
 
-    <!-- ========================= TELÉFONO ========================= -->
-    <div class="mb-3">
-      <label for="telefono" class="form-label fw-bold">Teléfono</label>
+    <!-- Teléfono -->
+    <div class="form-group">
+      <label for="telefono" class="form-label">Teléfono</label>
 
       <input
         id="telefono"
         type="text"
         formControlName="telefono"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': hasError('telefono') }"
+        class="form-input"
+        [class.input-error]="hasError('telefono')"
       />
 
-      <div *ngIf="hasError('telefono')" class="invalid-feedback">
+      <div *ngIf="hasError('telefono')" class="form-error">
         <ng-container *ngIf="hasError('telefono','required')">El teléfono es obligatorio.</ng-container>
         <ng-container *ngIf="hasError('telefono','pattern')">Debe ser un número válido (solo dígitos).</ng-container>
       </div>
     </div>
 
-    <!-- ========================= BOTONES ========================= -->
-    <div class="d-flex justify-content-between mt-4">
+    <!-- Botones -->
+    <div class="labform-buttons">
       <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
         {{ editMode ? '💾 Actualizar' : '➕ Crear' }}
       </button>
 
-      <a routerLink="/laboratorios" class="btn btn-outline-secondary">
+      <a routerLink="/laboratorios" class="btn btn-ghost">
         🔙 Volver
       </a>
     </div>

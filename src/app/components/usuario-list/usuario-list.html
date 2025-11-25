@@ -1,37 +1,41 @@
-<div class="container mt-4" *ngIf="!error; else errorTemplate">
+<div class="container" *ngIf="!error; else errorTemplate">
 
-  <h2 class="mb-3">👥 Lista de Usuarios</h2>
-<!-- Tabla de usuarios -->
-  <table class="table table-bordered table-striped shadow-sm">
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Rol</th>
-      </tr>
-    </thead>
- <!-- Cuerpo de la tabla -->
-    <tbody>
-      <tr *ngFor="let u of usuarios">
-        <td>{{ u.id }}</td>
-        <td>{{ u.nombre }}</td>
-        <td>{{ u.email }}</td>
+  <div class="userlist-card">
+    <h1 class="userlist-title">👥 Lista de Usuarios</h1>
 
-        <td>
-          <span class="badge bg-primary" *ngIf="u.rol === 'ADMIN'">ADMIN</span>
-          <span class="badge bg-secondary" *ngIf="u.rol === 'USUARIO'">USUARIO</span>
-        </td>
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
 
-      </tr>
-    </tbody>
+      <tbody>
+        <tr *ngFor="let u of usuarios">
+          <td>{{ u.id }}</td>
+          <td>{{ u.nombre }}</td>
+          <td>{{ u.email }}</td>
 
-  </table>
+          <td>
+            <span class="badge-admin" *ngIf="u.rol === 'ADMIN'">ADMIN</span>
+            <span class="badge-user" *ngIf="u.rol === 'USUARIO'">USUARIO</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
 
 </div>
-<!-- Mensaje de error -->
+
+<!-- Template error -->
 <ng-template #errorTemplate>
-  <div class="alert alert-danger mt-4 container">
-    {{ error }}
+  <div class="container">
+    <div class="alert-error">
+      {{ error }}
+    </div>
   </div>
 </ng-template>

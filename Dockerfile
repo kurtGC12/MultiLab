@@ -6,25 +6,23 @@ FROM node:22.12.0 AS builder
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-
 RUN npm install
 
 COPY . .
 
-RUN npm run build --prod
+RUN npm run build
 
 # ===================================================================
-# FASE 2 – RUN: nginx para servir Angular compilado
+# FASE 2 – NGINX para servir Angular compilado
 # ===================================================================
 FROM nginx:alpine
 
-# Copiamos el build generado hacia la carpeta pública de NGINX
-COPY --from=build /app/dist/MultiLabs/browser /usr/share/nginx/html
+# Copia el build Angular
+COPY --from=builder /app/dist/MultiLabs/browser /usr/share/nginx/html
 
-# Copiamos configuración de NGINX
+# Copia configuración nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Exponer puerto 80
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
