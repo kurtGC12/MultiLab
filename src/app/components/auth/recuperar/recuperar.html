@@ -1,24 +1,26 @@
-<div class="container mt-4" style="max-width: 480px;">
-  <h2 class="mb-3">🔑 Recuperar contraseña</h2>
+<div class="container login-container">
+  <div class="hero-inner">
+    <h1 class="form-title">🔑 Recuperar contraseña</h1>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label class="form-label">Correo electrónico registrado</label>
-      <input type="email" class="form-control" formControlName="email" />
-    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label class="form-label">Correo electrónico registrado</label>
+        <input type="email" class="form-input" formControlName="email" />
+      </div>
 
-    <div *ngIf="mensajeError" class="alert alert-danger py-2">
-      {{ mensajeError }}
-    </div>
+      <div class="alert-error" *ngIf="mensajeError">
+        {{ mensajeError }}
+      </div>
 
-    <div *ngIf="mensajeOk" class="alert alert-info py-2">
-      {{ mensajeOk }}
-    </div>
+      <div class="alert-info" *ngIf="mensajeOk">
+        {{ mensajeOk }}
+      </div>
 
-    <button class="btn btn-primary" type="submit">
-      Recuperar
-    </button>
-  </form>
+      <button class="btn btn-primary" type="submit">
+        Recuperar
+      </button>
+    </form>
+  </div>
 </div>
 
 
