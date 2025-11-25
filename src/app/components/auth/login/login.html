@@ -1,44 +1,45 @@
-<div class="container mt-4" style="max-width: 480px;">
-  <h2 class="mb-3">🔐 Iniciar sesión</h2>
+<div class="container login-container">
+  <div class="hero-inner">
+    <h1 class="form-title">🔐 Iniciar sesión</h1>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label class="form-label">Correo electrónico</label>
-      <input
-        type="email"
-        class="form-control"
-        formControlName="email"
-        placeholder="ejemplo@correo.cl"
-      />
-      <div class="text-danger small" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-        Ingrese un email válido.
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input
+          type="email"
+          class="form-input"
+          formControlName="email"
+          placeholder="ejemplo@correo.cl"
+        />
+        <div class="form-error" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+          Ingrese un email válido.
+        </div>
       </div>
-    </div>
 
-    <div class="mb-3">
-      <label class="form-label">Contraseña</label>
-      <input
-        type="password"
-        class="form-control"
-        formControlName="password"
-        placeholder="••••••"
-      />
-      <div class="text-danger small" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
-        La contraseña es obligatoria.
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-input"
+          formControlName="password"
+          placeholder="••••••"
+        />
+        <div class="form-error" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+          La contraseña es obligatoria.
+        </div>
       </div>
-    </div>
 
-    <div *ngIf="mensajeError" class="alert alert-danger py-2">
-      {{ mensajeError }}
-    </div>
+      <div class="alert-error" *ngIf="mensajeError">
+        {{ mensajeError }}
+      </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="cargando">
-      {{ cargando ? 'Ingresando...' : 'Ingresar' }}
-    </button>
+      <button type="submit" class="btn btn-primary" [disabled]="cargando">
+        {{ cargando ? 'Ingresando...' : 'Ingresar' }}
+      </button>
 
-     <a routerLink="/recuperar" class="btn btn-link btn-sm">
-      ¿Olvidaste tu contraseña?
-    </a>
-
-  </form>
+      <a routerLink="/recuperar" class="form-link">
+        ¿Olvidaste tu contraseña?
+      </a>
+    </form>
+  </div>
 </div>

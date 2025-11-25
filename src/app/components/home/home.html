@@ -1,120 +1,86 @@
-<header class="header d-flex align-items-center fixed-top">
-  <div class="container d-flex justify-content-between align-items-center">
+<header class="site-header">
+  <div class="brand">
+    <div class="logo">ML</div>
+    <span>MultiLab</span>
+  </div>
 
-    <!-- LOGO IZQUIERDA -->
-    <h1 class="logo mb-0">MultiLab</h1>
+  <nav class="nav">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/login">Iniciar sesión</a>
+    <a routerLink="/registro">Registrarme</a>
+  </nav>
 
-    <!-- MENÚ CENTRADO -->
-     <nav class="navmenu header-center">
-      <ul>
-        <li><a routerLink="/">Inicio</a></li>
-        <li><a routerLink="/login">Iniciar sesión</a></li>
-        <li><a routerLink="/registro">Registrarme</a></li>
-      </ul>
-    </nav>
+  <div class="session-status">
+    <ng-container *ngIf="estaAutenticado; else sinSesion">
+      <span class="muted">{{ nombreUsuario }}</span>
+      <span class="kicker">{{ rolUsuario }}</span>
+      <button class="btn btn-primary" (click)="irALaboratorios()">
+        Laboratorios
+      </button>
+    </ng-container>
 
-    <!-- SESIÓN DERECHA -->
-    <div class="session-status ms-auto">
-      <ng-container *ngIf="estaAutenticado; else sinSesion">
-              <p>👤 Usuario: <strong>{{ nombreUsuario }}</strong></p>
-              <p>🔑 Rol: <span class="badge bg-primary">{{ rolUsuario }}</span></p>
-
-              <button class="btn btn-outline-primary btn-sm" (click)="irALaboratorios()">
-                Ir a Gestión de Laboratorios
-              </button>
-            </ng-container>
-
-            <ng-template #sinSesion>
-              <p>No hay sesion iniciada</p>
-            </ng-template>
-    </div>
+    <ng-template #sinSesion>
+      <p class="muted">Sin sesión</p>
+    </ng-template>
   </div>
 </header>
 <main>
-  <section id="hero" class="hero section dark-background">
-
-    <!-- Imagen de fondo -->
-    <img src="/imagen/lab.jpg" alt="Laboratorio clínico">
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-      <h2>Gestión Inteligente de Laboratorios</h2>
+  <section class="hero section" data-aos="fade-up">
+    <div class="hero-inner">
+      <h1>Gestión Inteligente de Laboratorios</h1>
       <p>Control total de resultados, usuarios, muestras y reportes en un solo sistema.</p>
-
-      <a routerLink="/registro" class="btn-get-started">
-        Comienza Ahora
-      </a>
+      <div class="hero-cta">
+        <a routerLink="/registro" class="btn btn-primary">Comienza Ahora</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="/imagen/lab.jpg" alt="Laboratorio clínico" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
     </div>
   </section>
    
- <section id="why-us" class="why-us section">
-    <div class="container section-title" data-aos="fade-up">
-      <div><span>¿Por qué elegir </span><span class="description-title">MultiLab?</span></div>
+<section class="section">
+    <div class="section-title" data-aos="fade-up">
+      <h2>¿Por qué elegir <span style="color: var(--color-primary);">MultiLab?</span></h2>
     </div>
 
-    <div class="container">
-      <div class="row gy-4">
+    <div class="features">
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <span class="kicker">01</span>
+        <h3>Trazabilidad Completa</h3>
+        <p>Desde la toma de muestra hasta el resultado final. Control absoluto en cada etapa del proceso.</p>
+      </div>
 
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card-item">
-            <span>01</span>
-            <h4><a class="stretched-link">Trazabilidad Completa</a></h4>
-            <p>Desde la toma de muestra hasta el resultado final. Control absoluto en cada etapa del proceso.</p>
-          </div>
-        </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <span class="kicker">02</span>
+        <h3>Acceso Seguro</h3>
+        <p>Roles para Administradores y Analistas, con permisos personalizados y protección de datos sensibles.</p>
+      </div>
 
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="card-item">
-            <span>02</span>
-            <h4><a class="stretched-link">Acceso Seguro</a></h4>
-            <p>Roles para Administradores y Analistas, con permisos personalizados y protección de datos sensibles.</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="card-item">
-            <span>03</span>
-            <h4><a class="stretched-link">Reportes en Tiempo Real</a></h4>
-            <p>Visualiza estadísticas, resultados, productividad y estado de las muestras con gráficos dinámicos.</p>
-          </div>
-        </div>
-
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <span class="kicker">03</span>
+        <h3>Reportes en Tiempo Real</h3>
+        <p>Visualiza estadísticas, resultados, productividad y estado de las muestras con gráficos dinámicos.</p>
       </div>
     </div>
   </section>
 
-<section id="gallery" class="section">
-    <div class="container section-title" data-aos="fade-up">
-      <h2>Instalaciones</h2>
-      <div><span>Nuestras áreas de </span><span class="description-title">Laboratorio</span></div>
+<section class="section">
+    <div class="section-title" data-aos="fade-up">
+      <h2>Instalaciones - Nuestras áreas de <span style="color: var(--color-primary);">Laboratorio</span></h2>
     </div>
 
-    <div class="container">
-      <div class="row g-4">
-
-        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-          <img src="/imagen/lab1.jpg" class="gallery-img" alt="">
-        </div>
-
-        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="150">
-          <img src="/imagen/lab2.jpg" class="gallery-img" alt="">
-        </div>
-
-        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-          <img src="/imagen/lab3.jpg" class="gallery-img" alt="">
-        </div>
-
-        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="250">
-          <img src="/imagen/lab4.jpg" class="gallery-img" alt="">
-        </div>
-
-        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-          <img src="/imagen/lab5.jpg" class="gallery-img" alt="">
-        </div>
-
-        <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="350">
-          <img src="/imagen/lab6.jpg" class="gallery-img" alt="">
-        </div>
-
+    <div class="features">
+      <div class="hero-visual" data-aos="zoom-in" data-aos-delay="100" style="background: url('/imagen/lab1.jpg') center/cover;">
+      </div>
+      <div class="hero-visual" data-aos="zoom-in" data-aos-delay="150" style="background: url('/imagen/lab2.jpg') center/cover;">
+      </div>
+      <div class="hero-visual" data-aos="zoom-in" data-aos-delay="200" style="background: url('/imagen/lab3.jpg') center/cover;">
+      </div>
+      <div class="hero-visual" data-aos="zoom-in" data-aos-delay="250" style="background: url('/imagen/lab4.jpg') center/cover;">
+      </div>
+      <div class="hero-visual" data-aos="zoom-in" data-aos-delay="300" style="background: url('/imagen/lab5.jpg') center/cover;">
+      </div>
+      <div class="hero-visual" data-aos="zoom-in" data-aos-delay="350" style="background: url('/imagen/lab6.jpg') center/cover;">
       </div>
     </div>
   </section>

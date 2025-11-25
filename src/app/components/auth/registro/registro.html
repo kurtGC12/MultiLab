@@ -1,35 +1,44 @@
 
-<div class="container mt-4" style="max-width: 560px;">
-  <h2 class="mb-3">📝 Registro de usuario</h2>
+<div class="container register-container">
+  <div class="hero-inner">
+    <h1 class="form-title">📝 Registro de usuario</h1>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label class="form-label">Nombre completo</label>
-      <input class="form-control" formControlName="nombre" />
-    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label class="form-label">Nombre completo</label>
+        <input class="form-input" formControlName="nombre"  placeholder="Ej: Kurt Gonzalez Castro"/>
+      </div>
 
-    <div class="mb-3">
-      <label class="form-label">Correo electrónico</label>
-      <input type="email" class="form-control" formControlName="email" />
-    </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-input" formControlName="email" placeholder="Ej: Kurt@example.com" />
+      </div>
 
-    <div class="mb-3">
-      <label class="form-label">Contraseña</label>
-      <input type="password" class="form-control" formControlName="password" />
-    </div>
-    
-    <div *ngIf="mensajeError" class="alert alert-danger py-2">
-      {{ mensajeError }}
-    </div>
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-input" formControlName="password"  placeholder="Mínimo 6 caracteres"/>
+        <small class="help-text">
+          Debe tener entre 8 y 20 caracteres e incluir:<br>
+          • Al menos <strong>una letra mayúscula</strong><br>
+          • Al menos <strong>una letra minúscula</strong><br>
+          • Al menos <strong>un número</strong><br>
+          • Al menos <strong>un carácter especial</strong> (!@#$%^&* etc.)
+        </small>
+      </div>
 
-    <div *ngIf="mensajeOk" class="alert alert-success py-2">
-      {{ mensajeOk }}
-      <a routerLink="/login" class="ms-2">Ir a iniciar sesión</a>
-    </div>
+      <div class="alert-error" *ngIf="mensajeError">
+        {{ mensajeError }}
+      </div>
 
-    <button class="btn btn-success" type="submit" [disabled]="cargando">
-      {{ cargando ? 'Registrando...' : 'Registrarme' }}
-    </button>
-  </form>
+      <div class="alert-success" *ngIf="mensajeOk">
+        {{ mensajeOk }}
+        <a routerLink="/login">Ir a iniciar sesión</a>
+      </div>
+
+      <button class="btn btn-success" type="submit" [disabled]="cargando">
+        {{ cargando ? 'Registrando...' : 'Registrarme' }}
+      </button>
+    </form>
+  </div>
 </div>
 
