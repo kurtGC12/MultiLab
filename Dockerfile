@@ -10,7 +10,8 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN npx ng build --configuration production
+
 
 # ===================================================================
 # FASE 2 – NGINX para servir Angular compilado
@@ -18,7 +19,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copia el build Angular
-COPY --from=builder /app/dist/MultiLabs/browser /usr/share/nginx/html
+COPY --from=builder /app/dist/MultiLab/browser /usr/share/nginx/html
 
 # Copia configuración nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
