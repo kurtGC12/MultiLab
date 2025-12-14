@@ -26,6 +26,7 @@ module.exports = function (config) {
         { type: 'html' },
          { type: 'lcovonly', file: 'lcov.info' },
         { type: 'text-summary' }
+       
       ],
         fixWebpackSourcePaths: true
     },
