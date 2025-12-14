@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth';
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']
 })
-export class NavbarComponent {
+export class Navbar {
 
   esAdmin = false;
   esAnalista = false;
