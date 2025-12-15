@@ -24,7 +24,7 @@ class UsuariosServiceMock implements Partial<UsuariosService> {
   }
 }
 
-describe('UsuarioList (Semana 7)', () => {
+describe('UsuarioList ', () => {
   let component: UsuarioList;
   let fixture: ComponentFixture<UsuarioList>;
 

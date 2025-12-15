@@ -6,7 +6,7 @@ import { UsuariosService } from './usuarios';
 import { environment } from '../../environments/environment';
 import { Usuario } from '../models/usuario';
 
-describe('UsuariosService (Semana 7)', () => {
+describe('UsuariosService', () => {
   let service: UsuariosService;
   let httpMock: HttpTestingController;
 

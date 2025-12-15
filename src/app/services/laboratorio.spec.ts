@@ -7,7 +7,7 @@ import { LaboratorioService } from './laboratorios';
 import { environment } from '../../environments/environment';
 import { Laboratorio } from '../models/laboratorio';
 
-describe('LaboratorioService (Semana 7)', () => {
+describe('LaboratorioService ', () => {
   let service: LaboratorioService;
   let httpMock: HttpTestingController;
 

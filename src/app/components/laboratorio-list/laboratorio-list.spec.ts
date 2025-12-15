@@ -26,7 +26,7 @@ class AuthServiceMock {
   }
 }
 
-describe('LaboratorioList (Semana 7)', () => {
+describe('LaboratorioList ', () => {
   let component: LaboratorioList;
   let fixture: ComponentFixture<LaboratorioList>;
   let serviceMock: LaboratorioServiceMock;
