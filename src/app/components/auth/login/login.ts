@@ -52,8 +52,8 @@ export class Login {
         this.cargando = false;
         // Guardamos usuario en AuthService (y LocalStorage)
         this.authService.login(usuario);
-        // Redirigimos a la lista de libros
-        this.router.navigate(['/libros']);
+        // Redirigimos a la lista de laboratorios
+        this.router.navigate(['/laboratorios']);
       },
       error: err => {
         this.cargando = false;
