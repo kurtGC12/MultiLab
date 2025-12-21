@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class UsuariosService {
 
-  private apiUrl = 'http://localhost:8081/api/usuarios';
+  private readonly apiUrl = `${environment.apiBaseUrlUser}/usuarios`;
 
   constructor(private http: HttpClient) {}
 
