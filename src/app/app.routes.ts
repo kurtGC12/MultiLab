@@ -16,6 +16,11 @@ import { LaboratorioDetalle } from './components/laboratorio-detalle/laboratorio
 import { Perfil } from './components/perfil/perfil';
 import { UsuarioList} from './components/usuario-list/usuario-list';
 
+//resultados
+import { ResultadosComponent } from './components/resultados/resultados';
+import { ResultadoForm } from './components/resultado-form/resultado-form';
+
+
 // Guards
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
@@ -40,7 +45,7 @@ export const routes: Routes = [
   { path: 'recuperar', component: Recuperar },
 
   // ============================================================
-  // PERFIL DEL USUARIO (solo ANALISTA logueado)
+  // PERFIL DEL USUARIO (solo USUARIO logueado)
   // ============================================================
   {
     path: 'perfil',
@@ -49,7 +54,7 @@ export const routes: Routes = [
   },
 
   // ============================================================
-  // RUTAS DE GESTIÓN DE USUARIOS Y LABORATORIOS
+  // RUTAS DE GESTIÓN DE ANALISTAS Y LABORATORIOS
   // ============================================================ 
   {
     path: 'usuarios',
@@ -60,7 +65,7 @@ export const routes: Routes = [
   {
     path: 'laboratorios',
     component: LaboratorioList,
-    canActivate: [authGuard]      // ambos roles pueden ver libros
+    canActivate: [authGuard]      // ambos roles pueden ver laboratorios
   },
 
   {
@@ -80,6 +85,17 @@ export const routes: Routes = [
     component: LaboratorioDetalle,
     canActivate: [authGuard]      // ambos roles pueden ver detalle
   },
+
+  { path: 'resultados',
+    component: ResultadosComponent,
+    canActivate: [authGuard] 
+  },
+
+  { path: 'resultados/:id/editar',
+    component: ResultadoForm,
+    canActivate: [authGuard]
+   },    
+     
 
   // ============================================================
   // RUTA comodín (404)

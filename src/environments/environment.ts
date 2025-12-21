@@ -3,7 +3,7 @@ export const environment = {
   // Dirección base del backend (Spring Boot)
   apiBaseUrlUser: 'http://localhost:8081/api',
   apiBaseUrlabs: 'http://localhost:8080/api',
-
+  apiBaseUrlRult: 'http://localhost:8082/api',
   production: false
 };
 

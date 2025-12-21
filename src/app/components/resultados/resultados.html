@@ -1,0 +1,44 @@
+<div class="resultlist-wrapper">
+  <div class="section-title">
+    <h2>Resultados de análisis</h2>
+  </div>
+
+  <div class="resultlist-card">
+    <div class="resultlist-filters">
+      <input type="number" placeholder="laboratorioId" [(ngModel)]="filtro.laboratorioId" class="form-input">
+      <input type="number" placeholder="analistaId" [(ngModel)]="filtro.analistaId" class="form-input">
+      <button (click)="buscar()" class="btn btn-primary">Buscar</button>
+      <button routerLink="/resultados/nuevo" class="btn btn-primary">Crear Resultado</button>
+    </div>
+
+    <p *ngIf="loading" class="muted">Cargando...</p>
+
+    <table class="result-table" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Laboratorio</th>
+          <th>Analista</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of resultados">
+          <td>{{ r.id }}</td>
+          <td>{{ r.laboratorioId }}</td>
+          <td>{{ r.analistaId }}</td>
+          <td>{{ r.fechaResultado }}</td>
+          <td>
+            <span [ngClass]="'badge-' + (r.estado | lowercase)">{{ r.estado }}</span>
+          </td>
+          <td class="action-cell">
+            <button (click)="eliminar(r.id!)" class="table-btn table-btn-delete">Eliminar</button>
+            <button routerLink="['/resultados', r.id, 'editar']" class="table-btn table-btn-edit">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
