@@ -9,7 +9,7 @@ import { Laboratorio } from '../models/laboratorio';      // Modelo de datos de 
   providedIn: 'root',
 })
 export class LaboratorioService {
-  private readonly apiUrl = `${environment.apiBaseUrlabs}/laboratorios`;
+  private apiUrl = 'http://localhost:8080/api/laboratorios';
 
   constructor(private http: HttpClient) {}
   

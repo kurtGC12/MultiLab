@@ -8,7 +8,7 @@ import { Resultado } from '../models/resultado';
 
 @Injectable({ providedIn: 'root' })
 export class ResultadosService {
-  private readonly baseUrl = `${environment.apiBaseUrlRult}/resultados`;
+  private baseUrl = 'http://localhost:8082/api/resultados';
 
   constructor(private http: HttpClient) {}
 
