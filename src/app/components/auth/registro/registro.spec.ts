@@ -67,7 +67,7 @@ describe('Registro', () => {
 
     component.form.setValue({
       nombre: 'Kurt',
-      email: 'kurtgc@mail.com',
+      email: 'kurtgc@gmail.com',
       password: 'Password1!'
     });
 

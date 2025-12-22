@@ -15,7 +15,9 @@ import { EstadoResultado, Resultado } from '../../models/resultado';
   templateUrl: './resultado-form.html'
 })
 export class ResultadoForm implements OnInit {
-
+ onSubmit(): void {
+  this.guardar();
+}  
   form!: FormGroup;
 
   loading = false;

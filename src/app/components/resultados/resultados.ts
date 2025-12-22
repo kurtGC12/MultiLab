@@ -42,4 +42,3 @@ export class ResultadosComponent implements OnInit {
   }
 }
 
-export { ResultadosService };
